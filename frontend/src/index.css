@@ -1,0 +1,503 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap");
+
+:root {
+  --bg: #110d0a;
+  --bg-soft: #1c1612;
+  --panel: rgba(33, 25, 20, 0.88);
+  --panel-border: rgba(255, 196, 135, 0.18);
+  --text: #f7efe1;
+  --muted: #d8d1bf;
+  --accent: #ffb347;
+  --accent-2: #3dd9b1;
+  --accent-3: #7cb7ff;
+  --danger: #ff7a7a;
+  --buy: #59e29e;
+  --watch: #ffcc66;
+  --avoid: #ff8e6b;
+  --shadow: 0 25px 70px rgba(0, 0, 0, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  font-family: "IBM Plex Sans", sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(255, 179, 71, 0.18), transparent 32%),
+    radial-gradient(circle at top right, rgba(61, 217, 177, 0.12), transparent 28%),
+    linear-gradient(180deg, #0d0907 0%, #17110d 45%, #100c09 100%);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+a {
+  color: var(--accent);
+}
+
+.auth-shell,
+.dashboard-shell {
+  min-height: 100vh;
+  padding: 32px;
+}
+
+.auth-shell {
+  display: grid;
+  place-items: center;
+}
+
+.auth-panel,
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 28px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+}
+
+.auth-panel {
+  width: min(480px, 100%);
+  padding: 40px;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.auth-title,
+.dashboard-title {
+  margin: 0;
+  font-family: "DM Serif Display", serif;
+  line-height: 0.95;
+}
+
+.auth-title {
+  font-size: clamp(2.5rem, 6vw, 3.4rem);
+}
+
+.dashboard-title {
+  font-size: clamp(3rem, 7vw, 5rem);
+}
+
+.auth-subtitle,
+.hero-copy,
+.muted-copy {
+  color: var(--muted);
+}
+
+.auth-form,
+.stack-list,
+.table-list,
+.chat-feed {
+  display: grid;
+  gap: 16px;
+}
+
+.auth-form {
+  margin-top: 28px;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+}
+
+.field-grow {
+  flex: 1;
+}
+
+.field span {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.field input {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  border-radius: 18px;
+  padding: 14px 16px;
+  outline: none;
+}
+
+.field input:focus {
+  border-color: rgba(255, 179, 71, 0.55);
+  box-shadow: 0 0 0 4px rgba(255, 179, 71, 0.12);
+}
+
+.primary-button,
+.secondary-button,
+.tab-button {
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform 180ms ease, opacity 180ms ease, background 180ms ease;
+}
+
+.primary-button,
+.secondary-button {
+  padding: 12px 18px;
+  font-weight: 700;
+}
+
+.primary-button {
+  background: linear-gradient(135deg, var(--accent), #ff8c5a);
+  color: #20160f;
+}
+
+.secondary-button {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+}
+
+.primary-button:hover,
+.secondary-button:hover,
+.tab-button:hover {
+  transform: translateY(-1px);
+}
+
+.dashboard-header,
+.panel-heading,
+.alert-topline,
+.table-row,
+.header-actions,
+.chat-controls {
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+}
+
+.dashboard-header,
+.tab-strip,
+.dashboard-grid {
+  margin-bottom: 24px;
+}
+
+.tab-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.tab-button {
+  padding: 12px 18px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--muted);
+}
+
+.tab-active {
+  background: linear-gradient(135deg, rgba(255, 179, 71, 0.22), rgba(61, 217, 177, 0.18));
+  color: var(--text);
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.panel {
+  padding: 24px;
+}
+
+.panel-heading {
+  align-items: start;
+  margin-bottom: 20px;
+}
+
+.summary-grid,
+.insight-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin: 18px 0;
+}
+
+.metric-card,
+.alert-card,
+.slide-card,
+.user-chip,
+.chat-bubble,
+.chart-shell {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 22px;
+}
+
+.metric-card,
+.user-chip {
+  padding: 16px;
+}
+
+.metric-card span,
+.price-line span,
+.slide-index,
+.chat-role,
+.chat-meta {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.metric-card strong,
+.price-line {
+  display: block;
+  margin-top: 8px;
+  font-size: 1.5rem;
+}
+
+.alert-card,
+.slide-card,
+.chat-bubble {
+  padding: 18px;
+}
+
+.badge-column {
+  display: grid;
+  justify-items: end;
+  gap: 8px;
+}
+
+.signal-pill {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.signal-buy {
+  background: rgba(89, 226, 158, 0.14);
+  color: var(--buy);
+}
+
+.signal-watch {
+  background: rgba(255, 204, 102, 0.14);
+  color: var(--watch);
+}
+
+.signal-avoid {
+  background: rgba(255, 142, 107, 0.14);
+  color: var(--avoid);
+}
+
+.signal-strength {
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.table-row,
+.alert-topline,
+.header-actions,
+.chat-controls {
+  align-items: center;
+}
+
+.row-right {
+  display: grid;
+  justify-items: end;
+  gap: 6px;
+}
+
+.price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 10px 0 6px;
+}
+
+.change-chip,
+.detail-chip,
+.why-box,
+.portfolio-chip {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 18px;
+}
+
+.change-chip {
+  padding: 8px 12px;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.change-up {
+  color: var(--buy);
+  background: rgba(89, 226, 158, 0.12);
+}
+
+.change-down {
+  color: var(--avoid);
+  background: rgba(255, 142, 107, 0.12);
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 14px 0;
+}
+
+.impact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 14px 0;
+}
+
+.detail-chip {
+  padding: 12px 14px;
+}
+
+.impact-chip {
+  border-color: rgba(255, 179, 71, 0.22);
+}
+
+.detail-chip span,
+.why-title {
+  color: var(--muted);
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.detail-chip strong {
+  display: block;
+  margin-top: 6px;
+  font-size: 1rem;
+}
+
+.why-box {
+  margin-top: 14px;
+  padding: 14px 16px;
+}
+
+.why-box p {
+  margin: 8px 0 0;
+}
+
+.compact-top {
+  margin-top: 10px;
+}
+
+.risk-box {
+  border-color: rgba(255, 142, 107, 0.18);
+}
+
+.risk-card {
+  border-color: rgba(255, 122, 122, 0.25);
+}
+
+.compact-list {
+  margin: 10px 0 0;
+  padding-left: 18px;
+  color: var(--muted);
+}
+
+.portfolio-form {
+  display: flex;
+  gap: 12px;
+  align-items: end;
+  margin-bottom: 16px;
+}
+
+.portfolio-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.portfolio-chip {
+  padding: 10px 14px;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.chat-feed {
+  max-height: 520px;
+  overflow: auto;
+  padding-right: 4px;
+}
+
+.chat-user {
+  border-color: rgba(255, 179, 71, 0.2);
+}
+
+.chat-assistant {
+  border-color: rgba(61, 217, 177, 0.2);
+}
+
+.chat-form {
+  display: grid;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.slide-bullets {
+  margin: 14px 0;
+  padding-left: 18px;
+  color: var(--muted);
+}
+
+.error-banner {
+  margin: 0 0 20px;
+  border: 1px solid rgba(255, 122, 122, 0.4);
+  background: rgba(255, 122, 122, 0.1);
+  color: #ffd7d7;
+  padding: 14px 16px;
+  border-radius: 18px;
+}
+
+.auth-footer {
+  margin-top: 20px;
+  color: var(--muted);
+  text-align: center;
+}
+
+@media (max-width: 760px) {
+  .auth-shell,
+  .dashboard-shell {
+    padding: 18px;
+  }
+
+  .auth-panel,
+  .panel {
+    padding: 20px;
+    border-radius: 22px;
+  }
+
+  .dashboard-header,
+  .panel-heading,
+  .header-actions,
+  .chat-controls,
+  .table-row,
+  .portfolio-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .summary-grid,
+  .insight-grid,
+  .detail-grid,
+  .impact-grid {
+    grid-template-columns: 1fr;
+  }
+}
