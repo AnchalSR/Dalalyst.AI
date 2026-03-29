@@ -127,12 +127,15 @@ a {
 
 .field input {
   width: 100%;
+  min-width: 0;
   border: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(255, 255, 255, 0.04);
   color: var(--text);
   border-radius: 18px;
   padding: 14px 16px;
   outline: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .field input:focus {
@@ -218,6 +221,22 @@ a {
 .panel-heading {
   align-items: start;
   margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.panel-copy {
+  min-width: 0;
+  flex: 1 1 260px;
+}
+
+.panel-actions {
+  flex: 0 0 auto;
+}
+
+.panel-actions .primary-button,
+.panel-actions .secondary-button {
+  min-width: 120px;
+  white-space: nowrap;
 }
 
 .summary-grid,
@@ -416,6 +435,7 @@ a {
   gap: 12px;
   align-items: end;
   margin-bottom: 16px;
+  flex-wrap: wrap;
 }
 
 .portfolio-chip-row {
@@ -492,6 +512,16 @@ a {
   .portfolio-form {
     flex-direction: column;
     align-items: stretch;
+  }
+
+  .panel-actions {
+    width: 100%;
+  }
+
+  .panel-actions .primary-button,
+  .panel-actions .secondary-button,
+  .portfolio-form > .primary-button {
+    width: 100%;
   }
 
   .summary-grid,

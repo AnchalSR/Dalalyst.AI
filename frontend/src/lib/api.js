@@ -5,19 +5,26 @@ const TOKEN_KEY = 'dalalyst_token';
 const USER_KEY = 'dalalyst_user';
 
 function getApiBaseCandidates() {
-  const configured = CONFIGURED_API_BASE;
   const stored = localStorage.getItem(API_BASE_KEY);
   const candidates = [
-    stored,
-    configured,
     'http://localhost:8001',
     'http://127.0.0.1:8001',
+    CONFIGURED_API_BASE,
+    stored,
+    'http://localhost:8000',
+    'http://127.0.0.1:8000',
   ].filter(Boolean);
   return [...new Set(candidates)];
 }
 
 function rememberApiBase(base) {
   localStorage.setItem(API_BASE_KEY, base);
+}
+
+function forgetApiBase(base) {
+  if (localStorage.getItem(API_BASE_KEY) === base) {
+    localStorage.removeItem(API_BASE_KEY);
+  }
 }
 
 export function getToken() {
@@ -114,6 +121,7 @@ export async function apiRequest(path, options = {}) {
     console.error('API error response:', payload || response.statusText);
 
     if (shouldRetryWithAnotherBase(response.status, detail) && apiBase !== apiBases.at(-1)) {
+      forgetApiBase(apiBase);
       lastError = new Error(detail);
       lastError.status = response.status;
       continue;
